@@ -1,3 +1,50 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+USAGE:
+* Replace all fields, angle brackets included, with specified info.
+  eg, pd <pd#> --> pd 3
+* Delete these instructions once all teammates understand usage.
+  (from tilde bar above to tilde bar below)
+* rename this file devlog.txt
+
+devlog--
+Use keyboard shortcut to jump to end,
+ replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
+ modify appropriately.
+Each entry should begin with the following format:
+ firstL -- TIMESTAMP\n
+e.g.: 
+clydeS -- 2999-12-31 23:59
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Henali
+Aahan (spikes)
+Erica (hugo)
+Henry (e)
+pd 8
+---------------------
+WebLog
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+fristL -- TIMESTAMP
+--------------------------------------------------------------
+<Thing fristL did.>
+==============================================================
+
+
 AahanM -- 2022-11-03 12:01
+--------------------------------------------------------------
 specified methods used (POST)
+==============================================================
+
 
