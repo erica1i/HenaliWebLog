@@ -17,9 +17,11 @@ clydeS -- 2999-12-31 23:59
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Henali
-Aahan (spikes)request
-WebLog
-
+Aahan (spikes), Erica (hugo), Henry (e)
+Pd 8
+------------------------------------------
+PROJ 00 WebLog - Creating a site where users are able to create, 
+view, and edit blogs
 
  ______   ______   __   __   __       ______   _______     
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
@@ -34,10 +36,15 @@ WebLog
 
 AahanM -- 2022-11-03 12:01
 --------------------------------------------------------------
-specified methods used (POST)
+Specified methods used (POST) in design.pdf
 ==============================================================
 
-Henali -- 2022-11-07 
+Henali -- 2022-11-07 14:01
 --------------------------------------------------------------
 Created database builder (which creates tables), register page started
+==============================================================
+
+Erica -- 2022-11-07 16:31
+--------------------------------------------------------------
+Edited Devlog.txt and updated our heading. Thats it! 
 ==============================================================
