@@ -4,15 +4,30 @@ Henali: Erica (hugo), Henry (e), Aahan (spikes)
 SoftDev
 2022-11-03
 time spent: 
-
-DISCO:
-QCC:
-
 '''
+
 from flask import Flask, session, request, render_template, redirect, url_for
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = 'foo'
+
+db_name = "test.db"
+db = sqlite3.connect(db_name)
+c =  db.cursor()
+
+@app.route("/create_user", methods = ["POST"])
+def register():
+    if request.method == "POST" :
+        name = request.form.get('username')
+        passwd = request.form.get('password')
+
+        if name is in #Retrive from database
+
+        else :
+            c.execute("INSERT INTO users VALUES ('"+name+"', '"+passwd+"');")
+
+#FROM 19_SESSION!!!!!!!!!!!
 
 @app.route("/") #, methods = ['POST'])
 def login():
@@ -40,3 +55,6 @@ def logout():
 if __name__ == "__main__":
     app.debug = True
     app.run(port=1026)
+
+db.commit()
+db.close()
