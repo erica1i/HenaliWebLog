@@ -3,7 +3,7 @@ Henali: Erica (hugo), Henry (e), Aahan (spikes)
 
 SoftDev
 2022-11-03
-time spent: 
+time spent:
 '''
 
 from flask import Flask, session, request, render_template, redirect, url_for
@@ -16,16 +16,30 @@ db_name = "test.db"
 db = sqlite3.connect(db_name)
 c =  db.cursor()
 
-@app.route("/create_user", methods = ["POST"])
-def register():
-    if request.method == "POST" :
-        name = request.form.get('username')
-        passwd = request.form.get('password')
+# @app.route("/create_user", methods = ["POST"])
+# def register():
+#     if request.method == "POST" :
+#         name = request.form.get('username')
+#         passwd = request.form.get('password')
+#
+#         if name is in #Retrive from database
+#
+#         else :
+#             c.execute("INSERT INTO users VALUES ('"+name+"', '"+passwd+"');")
 
-        if name is in #Retrive from database
+@app.route("/blog")#, methods = ["POST"])
+#@app.route("/blog/<name>", methods = ["POST"])
+def load_blog_page():
+    return render_template('blog_page.html', blog_name="test blog")
 
-        else :
-            c.execute("INSERT INTO users VALUES ('"+name+"', '"+passwd+"');")
+@app.route("/edit_page", methods = ["POST"])
+def load_edit_page():
+    return render_template('edit_page.html', blog_name="test blog")
+
+@app.route("/save_edit", methods = ["POST"])
+def save_edit():
+    return redirect(url_for('load_blog_page'))
+
 
 #FROM 19_SESSION!!!!!!!!!!!
 
