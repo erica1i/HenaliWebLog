@@ -60,3 +60,9 @@ HenryB -- 2022-11-08 12:36
 All very testing phases (so only works with defaults rn), but
 we can edit blogs
 ==============================================================
+
+HenryB -- 2022-11-08 17:24
+--------------------------------------------------------------
+Can add multiple posts per blog (although poorly formatted),
+saves blog info in url, and some comments
+==============================================================

@@ -27,47 +27,54 @@ db_name = "test.db"
 #             c.execute("INSERT INTO users VALUES ('"+name+"', '"+passwd+"');")
 
 @app.route("/blog")#, methods = ["POST"])
-#@app.route("/blog/<name>", methods = ["POST"])
-def load_blog_page():
+def load_def_blog_page():
+    return load_blog_page("test", 1)
+
+@app.route("/blog/<name>/<id>")
+def load_blog_page(name, id):
     db = sqlite3.connect(db_name)
     c =  db.cursor()
-    blog_id = 1
-    #print(c.execute("SELECT * FROM blogs;").fetchall())
-    #c.execute("INSERT INTO blogs VALUES ('blog1', 'Foo', 2);")
-    #blogs_data = c.execute("SELECT * FROM blogs;")
-    blogs_data = c.execute("SELECT id, name FROM blogs ORDER BY id")
-    blog_info = blogs_data.fetchall()[blog_id-1]
-    blog_entries = c.execute("SELECT id, contents FROM entries ORDER BY id").fetchall()  #WITH blog_id = blog_id
-    blog_name = blog_info[1]
-    session['last_page'] = ["/blog", blog_id, blog_name]
+    blog_id = int(id)
+    blog_name = name
+    blogs_data = c.execute("SELECT id, name, user_name FROM blogs ORDER BY id")
+    blog_info = blogs_data.fetchall()[blog_id-1] # Grabs the exact blog by id because they're all in order
+    blog_entries = c.execute("SELECT id, contents FROM entries WHERE blog_id="+str(blog_id)+" ORDER BY id").fetchall()  # Selects all entries on this blog and orders them by id
+    blog_creator = blog_info[2]
+    session['last_page'] = ["/blog", blog_id, blog_name] # Sets the last_page variable to the current page
     db.close()
     print(blog_entries)
+
     if len(blog_entries) > 0 :
-        first_entry = blog_entries[0][1]
+        entries = ""
+        for entry in blog_entries : # Add entry information to be given to the html template
+            text = entry[1]
+            entries += text+" "
     else :
-        first_entry = "Nothing here yet"
-    return render_template('blog_page.html', blog_name=blog_name, entry=first_entry)
+        entries = "Nothing here yet"
+    return render_template('blog_page.html', blog_name=blog_name, entry=entries)
 
 @app.route("/edit_page", methods = ["POST"])
 def load_edit_page():
     blog_id = session['last_page'][1]
-    blog_name = session['last_page'][2]
+    blog_name = session['last_page'][2] # Gets last page visited data
+    #check to see if user is correct one
 
-    session['last_page'] = ["/edit_page", blog_id, blog_name]
+    session['last_page'] = ["/edit_page", blog_id, blog_name] # Sets the last_page variable to the current page
     return render_template('edit_page.html', blog_name=blog_name)
 
 @app.route("/save_edit", methods = ["POST"])
 def save_edit():
     if request.method == "POST" :
         blog_id = session['last_page'][1]
-        blog_name = session['last_page'][2]
+        blog_name = session['last_page'][2] # Gets last page visited data
         db = sqlite3.connect(db_name)
         c =  db.cursor()
+        num_blog_entries = len(c.execute("SELECT id FROM entries").fetchall()) # Gets the number of current entries as to create a new unique entry id
         #c.execute("CREATE TABLE entries (contents TEXT, blog_id INT, id INT PRIMARY KEY);")
-        c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(1)+");")
+        c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(num_blog_entries)+");")
         db.commit()
         db.close()
-        return redirect(url_for('load_blog_page'))
+        return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
 
 
