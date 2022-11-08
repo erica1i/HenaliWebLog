@@ -54,3 +54,9 @@ HenryB -- 2022-11-08 10:07
 Built some basic infrastructure for blogs and editing them and
 created basic html templates for them
 ==============================================================
+
+HenryB -- 2022-11-08 12:36
+--------------------------------------------------------------
+All very testing phases (so only works with defaults rn), but
+we can edit blogs
+==============================================================

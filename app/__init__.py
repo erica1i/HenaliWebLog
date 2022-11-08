@@ -31,23 +31,44 @@ db_name = "test.db"
 def load_blog_page():
     db = sqlite3.connect(db_name)
     c =  db.cursor()
-    id_number = 1
+    blog_id = 1
     #print(c.execute("SELECT * FROM blogs;").fetchall())
     #c.execute("INSERT INTO blogs VALUES ('blog1', 'Foo', 2);")
     #blogs_data = c.execute("SELECT * FROM blogs;")
     blogs_data = c.execute("SELECT id, name FROM blogs ORDER BY id")
-    blog_info = blogs_data.fetchall()[id_number-1]
+    blog_info = blogs_data.fetchall()[blog_id-1]
+    blog_entries = c.execute("SELECT id, contents FROM entries ORDER BY id").fetchall()  #WITH blog_id = blog_id
     blog_name = blog_info[1]
+    session['last_page'] = ["/blog", blog_id, blog_name]
     db.close()
-    return render_template('blog_page.html', blog_name=blog_name)
+    print(blog_entries)
+    if len(blog_entries) > 0 :
+        first_entry = blog_entries[0][1]
+    else :
+        first_entry = "Nothing here yet"
+    return render_template('blog_page.html', blog_name=blog_name, entry=first_entry)
 
 @app.route("/edit_page", methods = ["POST"])
 def load_edit_page():
-    return render_template('edit_page.html', blog_name="test blog")
+    blog_id = session['last_page'][1]
+    blog_name = session['last_page'][2]
+
+    session['last_page'] = ["/edit_page", blog_id, blog_name]
+    return render_template('edit_page.html', blog_name=blog_name)
 
 @app.route("/save_edit", methods = ["POST"])
 def save_edit():
-    return redirect(url_for('load_blog_page'))
+    if request.method == "POST" :
+        blog_id = session['last_page'][1]
+        blog_name = session['last_page'][2]
+        db = sqlite3.connect(db_name)
+        c =  db.cursor()
+        #c.execute("CREATE TABLE entries (contents TEXT, blog_id INT, id INT PRIMARY KEY);")
+        c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(1)+");")
+        db.commit()
+        db.close()
+        return redirect(url_for('load_blog_page'))
+    return "ERROR - NOT POST!"
 
 
 #FROM 19_SESSION!!!!!!!!!!!
