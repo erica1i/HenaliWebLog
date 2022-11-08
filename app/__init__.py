@@ -13,8 +13,7 @@ app = Flask(__name__)
 app.secret_key = 'foo'
 
 db_name = "test.db"
-db = sqlite3.connect(db_name)
-c =  db.cursor()
+
 
 # @app.route("/create_user", methods = ["POST"])
 # def register():
@@ -30,7 +29,17 @@ c =  db.cursor()
 @app.route("/blog")#, methods = ["POST"])
 #@app.route("/blog/<name>", methods = ["POST"])
 def load_blog_page():
-    return render_template('blog_page.html', blog_name="test blog")
+    db = sqlite3.connect(db_name)
+    c =  db.cursor()
+    id_number = 1
+    #print(c.execute("SELECT * FROM blogs;").fetchall())
+    #c.execute("INSERT INTO blogs VALUES ('blog1', 'Foo', 2);")
+    #blogs_data = c.execute("SELECT * FROM blogs;")
+    blogs_data = c.execute("SELECT id, name FROM blogs ORDER BY id")
+    blog_info = blogs_data.fetchall()[id_number-1]
+    blog_name = blog_info[1]
+    db.close()
+    return render_template('blog_page.html', blog_name=blog_name)
 
 @app.route("/edit_page", methods = ["POST"])
 def load_edit_page():
@@ -70,5 +79,5 @@ if __name__ == "__main__":
     app.debug = True
     app.run(port=1026)
 
-db.commit()
-db.close()
+# db.commit()
+# db.close()
