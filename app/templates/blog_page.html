@@ -17,14 +17,24 @@ time spent:
         {{blog_name}}
       </h1>
 
-      {{entry}}
+      {% for entry in entries %}
+        <b> {{entry[1]}} </b>
+        <br>
+        {{entry[2]}}
+        <br>
+        <form method = "POST" action="/edit_entry/{{entry[0]}}">
+          <input type="submit" name="sub1" value="Edit Entry">
+        </form>
+        <br>
+        <br>
+      {% endfor %}
 
       <h3>
-        Edit:
+        Add Entry:
       </h3>
 
       <form method = "POST" action="/edit_page">
-        <input type="submit" name="sub1">
+        <input type="submit" name="sub1" value="New Post">
       </form>
 
     </body>

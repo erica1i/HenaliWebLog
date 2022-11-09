@@ -1,0 +1,34 @@
+<!--
+Henali: Erica (hugo), Henry (e), Aahan (spikes)
+
+SoftDev
+2022-11-03
+time spent:
+-->
+<!DOCTYPE html>
+<html>
+
+    <head>
+      <title> {{blog_name}} - Edit Entry </title>
+    </head>
+
+    <body>
+      <h1>
+        {{blog_name}}
+      </h1>
+
+      <h3>
+        Edit post:
+      </h3>
+
+      <form method = "POST" action="/save_edit">
+        Post Name: <input type="text" name="name" value="{{name}}">
+        Contents: <input type="text" name="change" value="{{contents}}">
+        <br>
+        <input type="submit" name="sub1" value="Save Edit">
+      </form>
+
+
+    </body>
+
+  </html>

@@ -66,3 +66,9 @@ HenryB -- 2022-11-08 17:24
 Can add multiple posts per blog (although poorly formatted),
 saves blog info in url, and some comments
 ==============================================================
+
+HenryB -- 2022-11-09 15:47
+--------------------------------------------------------------
+Posts in blogs are better formatted and can be individually
+edited
+==============================================================
