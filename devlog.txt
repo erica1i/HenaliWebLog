@@ -72,3 +72,8 @@ HenryB -- 2022-11-09 15:47
 Posts in blogs are better formatted and can be individually
 edited
 ==============================================================
+
+AahanM -- 2022-11-09 17:33
+--------------------------------------------------------------
+Welcome page now has button to send you to blog page
+==============================================================

@@ -124,6 +124,10 @@ def logout():
     session.pop('username')
     return redirect(url_for('login'))
 
+@app.route("/blog", methods = ['POST'])
+def view_blog_section():
+    return render_template('blog_page.html')
+    
 # @app.route("/test")
 # def test():
 #     return "test"
