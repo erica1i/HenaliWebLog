@@ -37,23 +37,30 @@ def load_blog_page(name, id):
     blog_id = int(id)
     blog_info = c.execute("SELECT id, name, user_name FROM blogs WHERE id="+str(blog_id)).fetchall() # Grabs the exact blog by id
     blog_entries = c.execute("SELECT id, name, contents FROM entries WHERE blog_id="+str(blog_id)+" ORDER BY id").fetchall()  # Selects all entries on this blog and orders them by id
-    blog_name = blog_info[0][1]
-    blog_creator = blog_info[0][2]
-    session['last_page'] = ["/blog", blog_id, blog_name] # Sets the last_page variable to the current page
+    try :
+        blog_name = blog_info[0][1]
+        if blog_name != name :
+            return present_error("Apologies, it seems that blog does not exist.")
+            #Maybe have info to get to the blog they probably wanted (same name / id for example)?
+        blog_creator = blog_info[0][2]
+    except :
+        return present_error("Apologies, it seems that blog does not exist.")
+    session['last_page'] = ["/blog", blog_id, blog_name, blog_creator] # Sets the last_page variable to the current page
     db.close()
     print(blog_entries)
 
     if len(blog_entries) == 0 :
-        blog_entries = [[0, "Nothing here yet", "Create the first entry below"]]
-    return render_template('blog_page.html', blog_name=blog_name, entries=blog_entries)
+        blog_entries = [[-1, "Nothing here yet", "Create the first entry below"]]
+    return render_template('blog_page.html', blog_name=blog_name, creator=blog_creator, entries=blog_entries)
 
 @app.route("/edit_page", methods = ["POST"])
 def load_edit_page():
-    blog_id = session['last_page'][1]
-    blog_name = session['last_page'][2] # Gets last page visited data
-    #check to see if user is correct one
-
-    session['last_page'] = ["/edit_page", blog_id, blog_name] # Sets the last_page variable to the current page
+    (name, blog_id, blog_name, blog_creator) = session['last_page'] # Gets last page visited data
+    if 'username' not in session :
+        return present_error("Apologies, you need to log in to edit pages.")
+    if session['username'] != blog_creator :
+        return present_error("Apologies, only a blog's creator can edit it.")
+    session['last_page'] = ["/edit_page", blog_id, blog_name, blog_creator] # Sets the last_page variable to the current page
     return render_template('edit_page.html', blog_name=blog_name)
 
 @app.route("/create_post", methods = ["POST"])
@@ -63,7 +70,8 @@ def save_new_post():
         blog_name = session['last_page'][2] # Gets last page visited data
         db = sqlite3.connect(db_name)
         c =  db.cursor()
-        num_blog_entries = len(c.execute("SELECT id FROM entries").fetchall()) # Gets the number of current entries as to create a new unique entry id
+        blog_entries = c.execute("SELECT id FROM entries ORDER BY id").fetchall() # Gets the number of current entries as to create a new unique entry id
+        num_blog_entries = blog_entries[-1][0]+1
         #c.execute("CREATE TABLE entries (name TEXT, contents TEXT, blog_id INT, id INT PRIMARY KEY);")
         c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("name"))+"', '"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(num_blog_entries)+");")
         db.commit()
@@ -73,18 +81,23 @@ def save_new_post():
 
 @app.route("/edit_entry/<id>", methods = ["POST"])
 def load_edit_entry_page(id):
-    blog_id = session['last_page'][1]
-    blog_name = session['last_page'][2] # Gets last page visited data
+    (name, blog_id, blog_name, blog_creator) = session['last_page'] # Gets last page visited data
+    if 'username' not in session :
+        return present_error("Apologies, you need to log in to edit pages.")
+    if session['username'] != blog_creator :
+        return present_error("Apologies, only a blog's creator can edit it.")
     entry_id = id
     db = sqlite3.connect(db_name)
     c =  db.cursor()
     entry_info = c.execute("SELECT id, name, contents FROM entries WHERE id="+str(entry_id)).fetchall()
-    entry_name = entry_info[0][1]
-    entry_contents = entry_info[0][2]
+    try :
+        entry_name = entry_info[0][1]
+        entry_contents = entry_info[0][2]
+    except :
+        return present_error("Apologies, it seems that entry does not exist.")
     db.close()
-    #check to see if user is correct one
-    print([entry_name, entry_contents])
-    session['last_page'] = ["/edit_entry", blog_id, blog_name, entry_id] # Sets the last_page variable to the current page
+    session['last_page'] = ["/edit_entry", blog_id, blog_name, blog_creator] # Sets the last_page variable to the current page
+    session['entry'] = entry_id
     return render_template('edit_entry.html', blog_name=blog_name, name=entry_name, contents=entry_contents)
 
 @app.route("/save_edit", methods = ["POST"])
@@ -92,7 +105,7 @@ def save_edit():
     if request.method == "POST" :
         blog_id = session['last_page'][1]
         blog_name = session['last_page'][2]
-        entry_id = session['last_page'][3]
+        entry_id = session['entry']
         db = sqlite3.connect(db_name)
         c =  db.cursor()
         c.execute("DELETE FROM entries WHERE id="+str(entry_id)) # Deletes the current entry
@@ -108,7 +121,7 @@ def delete_entry():
     if request.method == "POST" :
         blog_id = session['last_page'][1]
         blog_name = session['last_page'][2]
-        entry_id = session['last_page'][3]
+        entry_id = session['entry']
         db = sqlite3.connect(db_name)
         c =  db.cursor()
         c.execute("DELETE FROM entries WHERE id="+str(entry_id)) # Deletes the current entry
@@ -116,6 +129,11 @@ def delete_entry():
         db.close()
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
+
+def present_error(message):
+    print(message)
+    return render_template("error.html", error=message)
+
 #FROM 19_SESSION!!!!!!!!!!!
 
 @app.route("/") #, methods = ['POST'])

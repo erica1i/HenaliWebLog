@@ -14,7 +14,7 @@ time spent:
 
     <body>
       <h1>
-        {{blog_name}}
+        {{blog_name}} by {{creator}}
       </h1>
 
       {% for entry in entries %}
@@ -22,9 +22,11 @@ time spent:
         <br>
         {{entry[2]}}
         <br>
-        <form method = "POST" action="/edit_entry/{{entry[0]}}">
-          <input type="submit" name="sub1" value="Edit Entry">
-        </form>
+        {% if entry[0] != -1 %}
+          <form method = "POST" action="/edit_entry/{{entry[0]}}">
+            <input type="submit" name="sub1" value="Edit Entry">
+          </form>
+        {% endif %}
         <br>
         <br>
       {% endfor %}
