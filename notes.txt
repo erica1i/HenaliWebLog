@@ -1,0 +1,2 @@
+QUERY
+- use ? in replacement of variables in sqlite3

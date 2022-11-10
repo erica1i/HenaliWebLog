@@ -26,7 +26,7 @@ db_name = "test.db"
 #         else :
 #             c.execute("INSERT INTO users VALUES ('"+name+"', '"+passwd+"');")
 
-@app.route("/blog")#, methods = ["POST"])
+@app.route("/blog") #methods = ["POST"])
 def load_def_blog_page():
     return load_blog_page("test", 1)
 
@@ -153,7 +153,7 @@ def welcome():
 @app.route("/logout", methods = ['POST'])
 def logout():
     session.pop('username')
-    return redirect(url_for('login'))
+    return render_template('login.html') #(url_for('login'))
 
 @app.route("/blog", methods = ['POST'])
 def view_blog_section():
