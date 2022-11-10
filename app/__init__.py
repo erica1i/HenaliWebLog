@@ -103,6 +103,19 @@ def save_edit():
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
 
+@app.route("/delete_entry", methods = ["POST"])
+def delete_entry():
+    if request.method == "POST" :
+        blog_id = session['last_page'][1]
+        blog_name = session['last_page'][2]
+        entry_id = session['last_page'][3]
+        db = sqlite3.connect(db_name)
+        c =  db.cursor()
+        c.execute("DELETE FROM entries WHERE id="+str(entry_id)) # Deletes the current entry
+        db.commit()
+        db.close()
+        return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
+    return "ERROR - NOT POST!"
 #FROM 19_SESSION!!!!!!!!!!!
 
 @app.route("/") #, methods = ['POST'])
@@ -127,7 +140,7 @@ def logout():
 @app.route("/blog", methods = ['POST'])
 def view_blog_section():
     return render_template('blog_page.html')
-    
+
 # @app.route("/test")
 # def test():
 #     return "test"
