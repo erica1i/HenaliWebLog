@@ -86,7 +86,13 @@ can be deleted
 
 Henali -- 2022-11-10 14:02
 --------------------------------------------------------------
-Adjusted some parts in __init__.py. There's an issue with 
-logging out. Clicked log out brings you to create entry page. 
-Edited welcome.html and renamed the buttons & formatting. 
+Adjusted some parts in __init__.py. There's an issue with
+logging out. Clicked log out brings you to create entry page.
+Edited welcome.html and renamed the buttons & formatting.
+==============================================================
+
+HenryB -- 2022-11-10 16:14
+--------------------------------------------------------------
+Login/logout functionality fixed, new accounts can be
+registered - need to build in secret_key stuff though
 ==============================================================

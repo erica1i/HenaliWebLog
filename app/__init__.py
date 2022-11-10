@@ -14,19 +14,7 @@ app.secret_key = 'foo'
 
 db_name = "test.db"
 
-
-# @app.route("/create_user", methods = ["POST"])
-# def register():
-#     if request.method == "POST" :
-#         name = request.form.get('username')
-#         passwd = request.form.get('password')
-#
-#         if name is in #Retrive from database
-#
-#         else :
-#             c.execute("INSERT INTO users VALUES ('"+name+"', '"+passwd+"');")
-
-@app.route("/blog") #methods = ["POST"])
+@app.route("/blog")
 def load_def_blog_page():
     return load_blog_page("test", 1)
 
@@ -134,30 +122,69 @@ def present_error(message):
     print(message)
     return render_template("error.html", error=message)
 
-#FROM 19_SESSION!!!!!!!!!!!
-
-@app.route("/") #, methods = ['POST'])
-def login():
+@app.route("/")
+def load_main_page():
     if 'username' in session:
-        return render_template('welcome.html', username=session['username'])
-    return render_template('login.html')
+        return render_template('main_page.html', username=session['username'])
+    return redirect(url_for('load_login_page'))
 
-@app.route("/welcome", methods = ['POST'])
-def welcome():
-    if request.method == "POST" :
-        if request.form.get('username') == "Foo" and request.form.get('password') == "Bar" :
-            session['username'] = request.form.get('username')
-            return render_template('welcome.html', username=session['username'])
-    return render_template('login.html', additional="Incorrect Username or Password")
+@app.route("/login")
+def load_login_page():
+    if 'username' in session:
+        return redirect(url_for('load_main_page'))
+    return render_template('login.html')
 
 @app.route("/logout", methods = ['POST'])
 def logout():
     session.pop('username')
-    return render_template('login.html') #(url_for('login'))
+    return redirect(url_for('load_login_page'))
 
-@app.route("/blog", methods = ['POST'])
-def view_blog_section():
-    return render_template('blog_page.html')
+@app.route("/activate_login", methods = ["POST"])
+def login():
+    if request.method == "POST" :
+        db = sqlite3.connect(db_name)
+        c =  db.cursor()
+        username = request.form.get('username')
+        user = c.execute("SELECT name, passwd FROM users WHERE name='"+str(username)+"'").fetchall()
+        db.close()
+        if len(user) == 1 :
+            if user[0][1] == str(request.form.get('password')) :
+                session['username'] = username
+                return redirect(url_for('load_main_page'))
+            else :
+                return render_template('login.html', additional="Incorrect password for "+username)
+        else :
+            return render_template('login.html', additional="No User with that Username exists")
+    return "ERROR - NOT POST!"
+
+@app.route("/register", methods=["POST"])
+def load_register_page():
+    return render_template("register.html")
+
+@app.route("/create_user", methods=["POST"])
+def create_user():
+    if request.method == "POST" :
+        db = sqlite3.connect(db_name)
+        c =  db.cursor()
+        username = request.form.get('username')
+        password = request.form.get('password')
+        users = c.execute("SELECT name FROM users WHERE name='"+str(username)+"'").fetchall()
+        if len(users) == 0 :
+            c.execute("INSERT INTO users VALUES ('"+username+"', '"+password+"');")
+            db.commit()
+            db.close()
+            session['username'] = username
+            return redirect(url_for('load_main_page'))
+        else :
+            db.close()
+            return render_template('register.html', additional="Username already taken")
+    return "ERROR - NOT POST!"
+
+#FROM 19_SESSION!!!!!!!!!!!
+
+# @app.route("/blog", methods = ['POST'])
+# def view_blog_section():
+#     return render_template('blog_page.html')
 
 # @app.route("/test")
 # def test():

@@ -7,6 +7,7 @@ c =  db.cursor()
 
 #c.execute("CREATE TABLE blogs (name TEXT, user_name TEXT, id INT PRIMARY KEY);")
 c.execute("INSERT INTO blogs VALUES ('blog1', 'Foo', 1);")
+c.execute("INSERT INTO users VALUES ('Foo', 'Bar');")
 
 db.commit()
 db.close()

@@ -9,36 +9,39 @@ time spent:
 <html>
 
     <head>
-      <title> LOGIN PAGE </title>
+      <title> Login </title>
     </head>
 
     <body>
-      <h1>
-        Welcome, Travelers of the Intertoobz!
-      </h1>
-
+      <h2>
+        Login
+      </h2>
 
       <h3>
         Enter your username and password below to proceed.
       </h3>
 
-      <form method = "POST" action="/welcome">
+      <form method = "POST" action="/activate_login">
         <input type="text" name="username">
         <input type="text" name="password">
         <input type="submit" name="sub1">
       </form>
-
-      <br>
 
       <h3>
         {{additional}}
       </h3>
 
       <br>
-      <br>
 
-      TNPG: Henali
-      Erica (hugo), Henry (e), Aahan (spikes)
+      <h2>
+        Create an account:
+      </h2>
+
+      <form method = "POST" action="/register">
+        <input type="submit" name="sub1" value="Register">
+      </form>
+
+
     </body>
 
   </html>
