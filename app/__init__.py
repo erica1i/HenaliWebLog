@@ -90,8 +90,7 @@ def load_register_page():
 @app.route("/create_post", methods = ["POST"])
 def save_new_post():
     if request.method == "POST" :
-        blog_id = session['last_page'][1]
-        blog_name = session['last_page'][2] # Gets last page visited data
+        (name, blog_id, blog_name, blog_creator) = session['last_page'] # Gets last page visited data
         db = sqlite3.connect(db_name)
         c =  db.cursor()
         blog_entries = c.execute("SELECT id FROM entries ORDER BY id").fetchall() # Gets the number of current entries as to create a new unique entry id
@@ -106,8 +105,7 @@ def save_new_post():
 @app.route("/save_edit", methods = ["POST"])
 def save_edit():
     if request.method == "POST" :
-        blog_id = session['last_page'][1]
-        blog_name = session['last_page'][2]
+        (name, blog_id, blog_name, blog_creator) = session['last_page'] # Gets last page visited data
         entry_id = session['entry']
         db = sqlite3.connect(db_name)
         c =  db.cursor()
@@ -122,8 +120,7 @@ def save_edit():
 @app.route("/delete_entry", methods = ["POST"])
 def delete_entry():
     if request.method == "POST" :
-        blog_id = session['last_page'][1]
-        blog_name = session['last_page'][2]
+        (name, blog_id, blog_name, blog_creator) = session['last_page'] # Gets last page visited data
         entry_id = session['entry']
         db = sqlite3.connect(db_name)
         c =  db.cursor()
@@ -150,9 +147,9 @@ def login():
         username = request.form.get('username')
         user = c.execute("SELECT name, passwd FROM users WHERE name='"+str(username)+"'").fetchall()
         db.close()
-        if len(user) == 1 :
+        if len(user) == 1 : # Checks to make sure username exists
             if user[0][1] == str(request.form.get('password')) :
-                session['username'] = username
+                session['username'] = username # Logins in user
                 return redirect(url_for('load_main_page'))
             else :
                 return render_template('login.html', additional="Incorrect password for "+username)
@@ -168,11 +165,11 @@ def create_user():
         username = request.form.get('username')
         password = request.form.get('password')
         users = c.execute("SELECT name FROM users WHERE name='"+str(username)+"'").fetchall()
-        if len(users) == 0 :
-            c.execute("INSERT INTO users VALUES ('"+username+"', '"+password+"');")
+        if len(users) == 0 : # Checks to make sure username doesn't already exist
+            c.execute("INSERT INTO users VALUES ('"+username+"', '"+password+"');") # Adds user to database
             db.commit()
             db.close()
-            session['username'] = username
+            session['username'] = username # Logins in user
             return redirect(url_for('load_main_page'))
         else :
             db.close()

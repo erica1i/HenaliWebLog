@@ -96,3 +96,8 @@ HenryB -- 2022-11-10 16:14
 Login/logout functionality fixed, new accounts can be
 registered - need to build in secret_key stuff though
 ==============================================================
+
+HenryB -- 2022-11-12 13:08
+--------------------------------------------------------------
+Back button attempts (but failure :( ), added more comments
+==============================================================
