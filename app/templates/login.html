@@ -1,47 +1,46 @@
 <!--
 Henali: Erica (hugo), Henry (e), Aahan (spikes)
-
-SoftDev
-2022-11-03
-time spent:
 -->
 <!DOCTYPE html>
 <html>
-
     <head>
       <title> LOGIN </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='login.css')}}"
     </head>
 
     <body>
-      <h2><b><font size = 8>
+      <h2>
         Login
-      </b></font></h2>
+      </h2>
 
-      <h3><b><font size = 8>
-        Enter your username and password below to proceed.
-      </b></font></h3>
-
+      <div class = user>
       <form method = "POST" action="/activate_login">
-        <input type="text" name="username">
+        Username:
+        <input type="text" name="username"> 
+        <br>
+        <br>
+        Password:
         <input type="text" name="password">
-        <input type="submit" name="sub1">
+        <br>
+        <br>
+        <input type="submit" name="sub1" value = "SUBMIT"></tr> <!-- submit button -->
       </form>
+      </div>
 
-      <h3>
+      <h4>
         {{additional}}
-      </h3>
+      </h4>
 
       <br>
 
       <h2>
-        Create an account:
+        Create An Account:
       </h2>
 
       <form method = "POST" action="/register">
         <input type="submit" name="sub1" value="Register">
       </form>
 
-
     </body>
 
-  </html>
+</html>

@@ -9,31 +9,35 @@ time spent:
 <html>
 
     <head>
-      <title> Register </title>
+      <title> REGISTER </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='register.css')}}"
     </head>
 
     <body>
       <h1>
-
+        Create Account Below
       </h1>
 
-
-      <h3>
-        Create Username Below
-      </h3>
-
       <form method = "POST" action="/create_user">
+        Username: 
         <input type="text" name="username">
+        <br><br>
+        Password:
         <input type="text" name="password">
+        <br><br>
         <input type="submit" name="sub1">
       </form>
 
-      <br>
+      <br> 
+      <h3>
       {{additional}}
+      </h3>
       <br>
 
+      <h4>
       TNPG: Henali
       Erica (hugo), Henry (e), Aahan (spikes)
+    </h4>
     </body>
 
   </html>

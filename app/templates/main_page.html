@@ -13,6 +13,7 @@ QCC:
 
     <head>
       <title> HOME </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='main_page.css')}}"
     </head>
 
     <body>
@@ -20,11 +21,11 @@ QCC:
         Welcome {{username}}!
       </h1>
 
-      Blogs:
       <form method = "POST" action="/blog">
+        <input type = "Submit" name = "allblogs" value = "READ BLOGS">
+        <br> <br>
         <input type="Submit" name="blog" value = "CREATE NEW BLOG">
       </form>
-
 
     <br>
     <br>
@@ -36,6 +37,8 @@ QCC:
 
     </body>
 
+    <h4>
     TNPG: Henali
     Erica (hugo), Henry (e), Aahan (spikes)
+    </h4>
   </html>

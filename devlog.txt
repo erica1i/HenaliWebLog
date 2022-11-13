@@ -1,21 +1,3 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-* rename this file devlog.txt
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
- modify appropriately.
-Each entry should begin with the following format:
- firstL -- TIMESTAMP\n
-e.g.:
-clydeS -- 2999-12-31 23:59
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Henali
 Aahan (spikes), Erica (hugo), Henry (e)
 Pd 8
@@ -107,4 +89,10 @@ EricaL -- 2022-11-12 23:14
 Edited the html pages. I can't download pip or virtualen or 
 Flask on this terrible laptop so the real work will have to 
 wait til tommorrow... sorry :(
+==============================================================
+
+EricaL -- 2022-11-12 15:38
+--------------------------------------------------------------
+Created css & html pages. Moved heading to bottom of the page.
+Tried connecting blog pages to the main page but failed. 
 ==============================================================
