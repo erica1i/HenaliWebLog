@@ -44,9 +44,9 @@ Henali -- 2022-11-07 14:01
 Created database builder (which creates tables), register page started
 ==============================================================
 
-Erica -- 2022-11-07 16:31
+EricaL -- 2022-11-07 16:31
 --------------------------------------------------------------
-Edited Devlog.txt and updated our heading. Thats it!
+Edited Devlog.txt and updated our heading.
 ==============================================================
 
 HenryB -- 2022-11-08 10:07
@@ -100,4 +100,11 @@ registered - need to build in secret_key stuff though
 HenryB -- 2022-11-12 13:08
 --------------------------------------------------------------
 Back button attempts (but failure :( ), added more comments
+==============================================================
+
+EricaL -- 2022-11-12 23:14
+--------------------------------------------------------------
+Edited the html pages. I can't download pip or virtualen or 
+Flask on this terrible laptop so the real work will have to 
+wait til tommorrow... sorry :(
 ==============================================================
