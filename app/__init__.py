@@ -24,7 +24,7 @@ def load_blog_list():
     db.close()
     return render_template('blog_list.html', blogs = blog_list)
 
-@app.route("/new_blog")
+@app.route("/new_blog", methods = ["POST"])
 def new_blog():
     db = sqlite3.connect(db_name)
     c = db.cursor()
@@ -32,10 +32,11 @@ def new_blog():
     blog_name = request.form.get('blog_name')
     creator = session['username']
     c.execute("INSERT INTO blogs VALUES ('"+blog_name+"', '"+creator+"', '"+new_blog_id+"');")
+    blog_list = c.execute("SELECT name, user_name, id FROM blogs").fetchall()
     
     db.commit()
     db.close()
-    return redirect(url_for('load_blog_list'))
+    return render_template('blog_list.html', blogs = blog_list)
 
 # Load Pages :
 @app.route("/blog/<name>/<id>", methods = ['POST'])
