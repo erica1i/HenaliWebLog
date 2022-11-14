@@ -14,8 +14,18 @@ app.secret_key = 'foo'
 
 db_name = "test.db"
 
+#load blog_list
+@app.route("/blog", methods = ['POST'])
+def load_blog_list():
+    db = sqlite3.connect(db_name)
+    c = db.cursor()
+    blog_list = c.execute("SELECT name, user_name, id FROM blogs").fetchall()
+    # print(blog_list)
+    db.close()
+    return render_template('blog_list.html',blogs = blog_list)
+    
 # Load Pages :
-@app.route("/blog/<name>/<id>")
+@app.route("/blog/<name>/<id>", methods = ['POST'])
 def load_blog_page(name, id):
     db = sqlite3.connect(db_name)
     c =  db.cursor()
