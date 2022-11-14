@@ -127,3 +127,9 @@ EricaL -- 2022-11-14 02:04
 Delete_entry & delete_blog won't work. Created delete-blog
 html template. Don't know whats up with the session stuff. 
 ==============================================================
+
+EricaL -- 2022-11-14 10:10
+--------------------------------------------------------------
+edit_entry, delete_entry & delete_blog won't work for some 
+reason...
+==============================================================

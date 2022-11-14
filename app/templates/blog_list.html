@@ -22,13 +22,15 @@ time spent:
       <form method = 'POST' action = "/new_blog">
         <input type="text" name="blog_name" placeholder="enter blog name here">
       </form>
-
+      <br><br><br>
+<!---
       <div class = directory>
       <table>
         <tr>
           <th><h2>Blog Name</h2></th>
           <th><h2>Author</h2></th>
         </tr>
+        -->
         {% for blog in blogs %}
         <form method = 'POST' action="/blog/{{blog[0]}}/{{blog[2]}}"> 
           <tr><td>
@@ -40,12 +42,13 @@ time spent:
       {% endfor %}
       </table>
       </div>
-      
+
       <br>
       <form>
         <input type="button" value="Back" onclick= "history.back()">
-       </form>
+       </form> 
 
+       
     </body>
 
   </html>

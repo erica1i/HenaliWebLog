@@ -10,13 +10,14 @@ time spent:
 
     <head>
       <title> {{blog_name}} </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='blog_page.css')}}"
     </head>
 
-    <body>
-      <h1>
-        {{blog_name}} by {{creator}}
-      </h1>
+    <h1>
+      {{blog_name}} by {{creator}}
+    </h1>
 
+    <body>
       {% for entry in entries %}
         <b> {{entry[1]}} </b>
         <br>
@@ -36,9 +37,10 @@ time spent:
       </h3>
 
       <form method = "POST" action="/edit_page">
-        <input type="submit" name="sub1" value="New Post">
+        <input type="submit" name="sub1" value= "Create New Post">
       </form>
 
+      <br><br>
       <form method = "POST" action="/delete_blog">
         <input type="submit" name="sub1" value="DELETE BLOG">
       </form>

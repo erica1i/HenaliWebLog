@@ -1,0 +1,12 @@
+h1{
+    text-align: center; 
+}
+
+body{
+    background-color: aliceblue; 
+}
+
+input, textarea{
+    font-family: inherit;
+    font-size: inherit;
+}

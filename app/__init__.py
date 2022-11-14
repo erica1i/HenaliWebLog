@@ -141,7 +141,6 @@ def save_edit():
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
 
-''' METHOD URLS NOT FOUND
 @app.route("/delete_entry", methods = ["POST"])
 def delete_entry():
     if request.method == "POST" :
@@ -154,7 +153,7 @@ def delete_entry():
         db.close()
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
-
+'''
 @app.route("/delete_blog", methods = ["POST"])
 def delete_blog():
      if request.method == "POST" :
