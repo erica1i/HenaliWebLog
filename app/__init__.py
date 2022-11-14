@@ -111,6 +111,10 @@ def load_register_page():
     session['last_page'] = ["/register", "na", "na", "na"]
     return render_template("register.html")
 
+@app.route("/load_delete_blog", methods = ["POST"])
+def load_delete_blog():
+    return render_template("delete_blog_page.html")
+
 # Functions :
 @app.route("/create_post", methods = ["POST"])
 def save_new_post():
@@ -164,10 +168,10 @@ def delete_entry():
 def delete_blog():
      if request.method == "POST" :
          (name, blog_id, blog_name, blog_creator) = session['last_page']
-         blog_id = session['entry']
          db = sqlite3.connect(db_name)
          c =  db.cursor()
-         c.execute("DELETE FROM blogs WHERE id=?",(str(blog_id),)) # Deletes the current blog
+         blog_id_str = (str(blog_id),)
+         c.execute("DELETE FROM blogs WHERE id=?", blog_id_str) # Deletes the current blog
          db.commit()
          db.close()
          return redirect(url_for('load_main_page')) # Returns to previous blog page
