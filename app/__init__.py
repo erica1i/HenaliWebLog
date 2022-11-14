@@ -111,9 +111,14 @@ def load_register_page():
     session['last_page'] = ["/register", "na", "na", "na"]
     return render_template("register.html")
 
-@app.route("/load_delete_blog", methods = ["POST"])
+@app.route("/delete", methods = ["POST"])
 def load_delete_blog():
-    return render_template("delete_blog_page.html")
+    (name, blog_id, blog_name, blog_creator) = session['last_page']
+    if 'username' not in session :
+        return present_error("Apologies, you need to log in to delete your blogs.")
+    if session['username'] != blog_creator :
+        return present_error("Apologies, only a blog's creator can delete it.")
+    return render_template("delete_blog_page.html", blog_name=blog_name)
 
 # Functions :
 @app.route("/create_post", methods = ["POST"])
