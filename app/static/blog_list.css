@@ -1,6 +1,6 @@
 table{
     border-color:rgb(21, 39, 126); 
-    border-style:dotted; 
+    border-bottom-style: outset; 
     text-align: center;
 }
 

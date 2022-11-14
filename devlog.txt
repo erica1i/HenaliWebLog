@@ -133,3 +133,9 @@ EricaL -- 2022-11-14 10:10
 edit_entry, delete_entry & delete_blog won't work for some 
 reason...
 ==============================================================
+
+EricaL -- 2022-11-14 12:29
+--------------------------------------------------------------
+edited blog_page.css and blog_page.html. Adjusted the password
+settings. 
+==============================================================

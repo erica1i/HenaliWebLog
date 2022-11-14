@@ -23,25 +23,25 @@ time spent:
         <input type="text" name="blog_name" placeholder="enter blog name here">
       </form>
       <br><br><br>
-<!---
+
       <div class = directory>
-      <table>
+        <center><table> 
         <tr>
           <th><h2>Blog Name</h2></th>
           <th><h2>Author</h2></th>
         </tr>
-        -->
+      </table></center>
+      </div>
+
         {% for blog in blogs %}
         <form method = 'POST' action="/blog/{{blog[0]}}/{{blog[2]}}"> 
           <tr><td>
           <input type ="submit" name = "sub1" value = "{{blog[0]}}">
-          {{blog[1]}}
+           by {{blog[1]}}
           </td></tr>
         </form>
         <br>
       {% endfor %}
-      </table>
-      </div>
 
       <br>
       <form>

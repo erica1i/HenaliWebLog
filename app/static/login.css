@@ -30,7 +30,7 @@ input, textarea{
     font-size: inherit;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     padding: 10px;
     border: 0;
     border-radius: 10px;

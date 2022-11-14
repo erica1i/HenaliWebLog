@@ -4,9 +4,27 @@ h1{
 
 body{
     background-color: aliceblue; 
+    text-align: left; 
 }
 
 input, textarea{
     font-family: inherit;
     font-size: inherit;
+}
+
+input[type=text] {
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    text-align: center;
+}
+
+input[value="Create New Post"]{
+    padding: 10px;
+    border: 0; 
+    color: aliceblue; 
+    background-color: rgb(21, 39, 126);
+    border-radius: 5px;
+    font-weight: 300;
 }
