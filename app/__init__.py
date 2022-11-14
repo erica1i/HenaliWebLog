@@ -154,6 +154,18 @@ def delete_entry():
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
 
+# @app.route("/delete_blog", methods = ["POST"])
+# def delete_blog():
+#     if request.method == "POST" :
+#         blog_id = session['entry']
+#         db = sqlite3.connect(db_name)
+#         c =  db.cursor()
+#         c.execute("DELETE FROM blogs WHERE id="+str(entry_id)) # Deletes the current entry
+#         db.commit()
+#         db.close()
+#         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
+#     return "ERROR - NOT POST!"
+
 def present_error(message):
     print(message)
     return render_template("error.html", error=message)

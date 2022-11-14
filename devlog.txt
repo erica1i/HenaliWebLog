@@ -108,3 +108,10 @@ EricaL -- 2022-11-13 21:09
 --------------------------------------------------------------
 Edited the register page. 
 ==============================================================
+
+AahanM -- 2022-11-13 23:26
+--------------------------------------------------------------
+Created link between home and blogs. Can now create new blogs 
+as well. Began working on delete blogs. Made template for 
+blog_list
+==============================================================
