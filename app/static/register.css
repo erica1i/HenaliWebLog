@@ -4,6 +4,11 @@ body{
     color: rgb(21, 39, 126);
 }
 
+input, textarea{
+    font-family: inherit;
+    font-size: inherit; 
+}
+
 h4{
     position: absolute; 
     bottom: 0; 
@@ -14,4 +19,23 @@ h4{
 
 h3{
     color: red;
+}
+
+input[type=submit]{
+    padding: 10px;
+    border: 0; 
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    color: aliceblue; 
+    background-color: rgb(21, 39, 126); 
+    border-radius: 10px;
+}
+
+input[type=submit]:hover{
+    padding: 10px;
+    border: 0; 
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    color: rgb(21, 39, 126); 
+    background-color: aliceblue; 
+    border-radius: 10px;
+    font-weight: 800;
 }
