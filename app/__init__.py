@@ -152,9 +152,9 @@ def login():
                 session['username'] = username # Logins in user
                 return redirect(url_for('load_main_page'))
             else :
-                return render_template('login.html', additional="Incorrect password for "+username)
+                return render_template('login.html', additional="ERROR: Incorrect password for "+username)
         else :
-            return render_template('login.html', additional="No User with that Username exists")
+            return render_template('login.html', additional="ERROR: No User with that Username exists")
     return "ERROR - NOT POST!"
 
 @app.route("/create_user", methods=["POST"])
@@ -173,7 +173,7 @@ def create_user():
             return redirect(url_for('load_main_page'))
         else :
             db.close()
-            return render_template('register.html', additional="Username already taken")
+            return render_template('register.html', additional="ERROR: Username already taken")
     return "ERROR - NOT POST!"
 
 # @app.route("/back", methods = ["POST"])

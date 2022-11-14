@@ -96,3 +96,10 @@ EricaL -- 2022-11-12 15:38
 Created css & html pages. Moved heading to bottom of the page.
 Tried connecting blog pages to the main page but failed. 
 ==============================================================
+
+EricaL -- 2022-11-12 19:25
+--------------------------------------------------------------
+Edited css/html pages for login & main page aka jazzed it up. 
+Created back button using history.go(). Blog pages still isn't
+connected to the main page :(
+==============================================================
