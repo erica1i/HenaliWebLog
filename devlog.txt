@@ -121,3 +121,9 @@ EricaL -- 2022-11-14 01:23
 Added back button to error.html and register.html. Having 
 issues with table & div in blog_list.html/blog_list.css. 
 ==============================================================
+
+EricaL -- 2022-11-14 02:04
+--------------------------------------------------------------
+Delete_entry & delete_blog won't work. Created delete-blog
+html template. Don't know whats up with the session stuff. 
+==============================================================
