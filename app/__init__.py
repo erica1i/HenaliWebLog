@@ -33,7 +33,7 @@ def new_blog():
     creator = session['username']
     c.execute("INSERT INTO blogs VALUES ('"+blog_name+"', '"+creator+"', '"+new_blog_id+"');")
     blog_list = c.execute("SELECT name, user_name, id FROM blogs").fetchall()
-    
+
     db.commit()
     db.close()
     return render_template('blog_list.html', blogs = blog_list)
@@ -118,7 +118,10 @@ def save_new_post():
         db = sqlite3.connect(db_name)
         c =  db.cursor()
         blog_entries = c.execute("SELECT id FROM entries ORDER BY id").fetchall() # Gets the number of current entries as to create a new unique entry id
-        num_blog_entries = blog_entries[-1][0]+1
+        try :
+            num_blog_entries = blog_entries[-1][0]+1
+        except :
+            num_blog_entries = 0
         #c.execute("CREATE TABLE entries (name TEXT, contents TEXT, blog_id INT, id INT PRIMARY KEY);")
         c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("name"))+"', '"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(num_blog_entries)+");")
         db.commit()
