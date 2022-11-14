@@ -103,3 +103,8 @@ Edited css/html pages for login & main page aka jazzed it up.
 Created back button using history.go(). Blog pages still isn't
 connected to the main page :(
 ==============================================================
+
+EricaL -- 2022-11-12 21:09
+--------------------------------------------------------------
+Edited the register page. 
+==============================================================
