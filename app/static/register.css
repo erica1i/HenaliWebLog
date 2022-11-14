@@ -21,6 +21,13 @@ h3{
     color: red;
 }
 
+input[type=text] {
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
 input[type=submit]{
     padding: 10px;
     border: 0; 

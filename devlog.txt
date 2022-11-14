@@ -100,7 +100,7 @@ Tried connecting blog pages to the main page but failed.
 EricaL -- 2022-11-13 19:25
 --------------------------------------------------------------
 Edited css/html pages for login & main page aka jazzed it up. 
-Created back button using history.go(). Blog pages still isn't
+Created back button using history.back(). Blog pages still isn't
 connected to the main page :(
 ==============================================================
 
@@ -114,4 +114,10 @@ AahanM -- 2022-11-13 23:26
 Created link between home and blogs. Can now create new blogs 
 as well. Began working on delete blogs. Made template for 
 blog_list
+==============================================================
+
+EricaL -- 2022-11-14 01:23
+--------------------------------------------------------------
+Added back button to error.html and register.html. Having 
+issues with table & div in blog_list.html/blog_list.css. 
 ==============================================================

@@ -10,28 +10,38 @@ time spent:
 
     <head>
       <title> blogcyclopedia </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='blog_list.css')}}"
     </head>
 
     <body>
       <h1>
-        Blog Directory!
+        Blog Directory
       </h1>
 
-      {% for blog in blogs %}
-        <b>{{blog[0]}} </b>
-        <br>
-        By: {{blog[1]}}
-        <br>
-        <form method = 'POST' action="/blog/{{blog[0]}}/{{blog[2]}}">
-          <input type ="submit" name = "sub1" value = "Go to blog {{blog[0]}}">
-        </form>
-      {% endfor %}
-      <br>
-      Make your own Blog!
+      <h4>Make your own Blog!</h4>
       <form method = 'POST' action = "/new_blog">
         <input type="text" name="blog_name" placeholder="enter blog name here">
       </form>
-      <br>  
+
+      <div class = directory>
+      <table>
+        <tr>
+          <th><h2>Blog Name</h2></th>
+          <th><h2>Author</h2></th>
+        </tr>
+        {% for blog in blogs %}
+        <form method = 'POST' action="/blog/{{blog[0]}}/{{blog[2]}}"> 
+          <tr><td>
+          <input type ="submit" name = "sub1" value = "{{blog[0]}}">
+          {{blog[1]}}
+          </td></tr>
+        </form>
+        <br>
+      {% endfor %}
+      </table>
+      </div>
+      
+      <br>
       <form>
         <input type="button" value="Back" onclick= "history.back()">
        </form>
