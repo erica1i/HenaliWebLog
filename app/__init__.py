@@ -141,7 +141,7 @@ def save_edit():
         c.execute("DELETE FROM entries WHERE id=?", (str(entry_id),)) # Deletes the current entry
         #c.execute("CREATE TABLE entries (name TEXT, contents TEXT, blog_id INT, id INT PRIMARY KEY);")
         row = ( str(request.form.get("name")) , str(request.form.get("change")), str(blog_id), str(entry_id))
-        c.execute("INSERT INTO entries VALUES (?,?,?,?);")
+        c.execute("INSERT INTO entries VALUES (?,?,?,?);", row)
         db.commit()
         db.close()
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
