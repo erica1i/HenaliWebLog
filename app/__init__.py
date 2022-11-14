@@ -39,7 +39,7 @@ def new_blog():
     return render_template('blog_list.html', blogs = blog_list)
 
 # Load Pages :
-@app.route("/blog/<name>/<id>", methods = ['POST'])
+@app.route("/blog/<name>/<id>", methods = ['POST', 'GET']) # WHY??????????????????????????????????????????????????????????????
 def load_blog_page(name, id):
     db = sqlite3.connect(db_name)
     c =  db.cursor()
@@ -156,7 +156,7 @@ def delete_entry():
         db.close()
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
     return "ERROR - NOT POST!"
-'''
+
 @app.route("/delete_blog", methods = ["POST"])
 def delete_blog():
      if request.method == "POST" :
@@ -169,7 +169,7 @@ def delete_blog():
          db.close()
          return redirect(url_for('load_main_page')) # Returns to previous blog page
      return "ERROR - NOT POST!"
-'''
+
 def present_error(message):
     print(message)
     return render_template("error.html", error=message)
