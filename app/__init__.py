@@ -31,8 +31,9 @@ def new_blog():
     new_blog_id = str(len(c.execute("SELECT id FROM blogs").fetchall()) + 1)
     blog_name = request.form.get('blog_name')
     creator = session['username']
-    c.execute("INSERT INTO blogs VALUES ('"+blog_name+"', '"+creator+"', '"+new_blog_id+"');")
-    blog_list = c.execute("SELECT name, user_name, id FROM blogs").fetchall()
+    row = (blog_name, creator, new_blog_id)
+    c.execute("INSERT INTO blogs VALUES (?,?,?);",row)
+    blog_list = c.execute("SELECT name, user_name, id FROM blogs;").fetchall()
 
     db.commit()
     db.close()
@@ -44,8 +45,10 @@ def load_blog_page(name, id):
     db = sqlite3.connect(db_name)
     c =  db.cursor()
     blog_id = int(id)
-    blog_info = c.execute("SELECT id, name, user_name FROM blogs WHERE id="+str(blog_id)).fetchall() # Grabs the exact blog by id
-    blog_entries = c.execute("SELECT id, name, contents FROM entries WHERE blog_id="+str(blog_id)+" ORDER BY id").fetchall()  # Selects all entries on this blog and orders them by id
+    exact_blog = (str(blog_id.fetchall()))
+    blog_info = c.execute("SELECT id, name, user_name FROM blogs WHERE id=?",exact_blog) # Grabs the exact blog by id
+    b = (str(blog_id))
+    blog_entries = c.execute("SELECT id, name, contents FROM entries WHERE blog_id= ? ORDER BY id;", b).fetchall()  # Selects all entries on this blog and orders them by id
     try :
         blog_name = blog_info[0][1]
         if blog_name != name :
@@ -80,7 +83,8 @@ def load_edit_entry_page(id):
     entry_id = id
     db = sqlite3.connect(db_name)
     c =  db.cursor()
-    entry_info = c.execute("SELECT id, name, contents FROM entries WHERE id="+str(entry_id)).fetchall()
+    a = (str(entry_id))
+    entry_info = c.execute("SELECT id, name, contents FROM entries WHERE id=?;").fetchall()
     try :
         entry_name = entry_info[0][1]
         entry_contents = entry_info[0][2]
@@ -123,7 +127,8 @@ def save_new_post():
         except :
             num_blog_entries = 0
         #c.execute("CREATE TABLE entries (name TEXT, contents TEXT, blog_id INT, id INT PRIMARY KEY);")
-        c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("name"))+"', '"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(num_blog_entries)+");")
+        row = (str(request.form.get("name")), str(request.form.get("change")), str(blog_id), str(num_blog_entries) ) 
+        c.execute("INSERT INTO entries VALUES (?,?,?,?);", row)
         db.commit()
         db.close()
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
@@ -138,7 +143,8 @@ def save_edit():
         c =  db.cursor()
         c.execute("DELETE FROM entries WHERE id="+str(entry_id)) # Deletes the current entry
         #c.execute("CREATE TABLE entries (name TEXT, contents TEXT, blog_id INT, id INT PRIMARY KEY);")
-        c.execute("INSERT INTO entries VALUES ('"+str(request.form.get("name"))+"', '"+str(request.form.get("change"))+"', "+str(blog_id)+", "+str(entry_id)+");")
+        row = ( str(request.form.get("name")) , str(request.form.get("change")), str(blog_id), str(entry_id))
+        c.execute("INSERT INTO entries VALUES (?,?,?,?);")
         db.commit()
         db.close()
         return redirect(url_for('load_blog_page', name=blog_name, id=blog_id)) # Returns to previous blog page
@@ -185,7 +191,8 @@ def login():
         db = sqlite3.connect(db_name)
         c =  db.cursor()
         username = request.form.get('username')
-        user = c.execute("SELECT name, passwd FROM users WHERE name='"+str(username)+"'").fetchall()
+        str_usernom = str(username)
+        user = c.execute("SELECT name, passwd FROM users WHERE name= ?;",str_usernom).fetchall())
         db.close()
         if len(user) == 1 : # Checks to make sure username exists
             if user[0][1] == str(request.form.get('password')) :
@@ -204,9 +211,11 @@ def create_user():
         c =  db.cursor()
         username = request.form.get('username')
         password = request.form.get('password')
-        users = c.execute("SELECT name FROM users WHERE name='"+str(username)+"'").fetchall()
+        userpas = (username, password)
+        users = c.execute("SELECT name FROM users WHERE name=?'", userpas).fetchall()
         if len(users) == 0 : # Checks to make sure username doesn't already exist
-            c.execute("INSERT INTO users VALUES ('"+username+"', '"+password+"');") # Adds user to database
+            user = ( username, password )
+            c.execute("INSERT INTO users VALUES (?,?);", user) # Adds user to database
             db.commit()
             db.close()
             session['username'] = username # Logins in user
