@@ -86,56 +86,61 @@ Back button attempts (but failure :( ), added more comments
 
 EricaL -- 2022-11-12 23:14
 --------------------------------------------------------------
-Edited the html pages. I can't download pip or virtualen or 
-Flask on this terrible laptop so the real work will have to 
+Edited the html pages. I can't download pip or virtualen or
+Flask on this terrible laptop so the real work will have to
 wait til tommorrow... sorry :(
 ==============================================================
 
 EricaL -- 2022-11-13 15:38
 --------------------------------------------------------------
 Created css & html pages. Moved heading to bottom of the page.
-Tried connecting blog pages to the main page but failed. 
+Tried connecting blog pages to the main page but failed.
 ==============================================================
 
 EricaL -- 2022-11-13 19:25
 --------------------------------------------------------------
-Edited css/html pages for login & main page aka jazzed it up. 
+Edited css/html pages for login & main page aka jazzed it up.
 Created back button using history.back(). Blog pages still isn't
 connected to the main page :(
 ==============================================================
 
 EricaL -- 2022-11-13 21:09
 --------------------------------------------------------------
-Edited the register page. 
+Edited the register page.
 ==============================================================
 
 AahanM -- 2022-11-13 23:26
 --------------------------------------------------------------
-Created link between home and blogs. Can now create new blogs 
-as well. Began working on delete blogs. Made template for 
+Created link between home and blogs. Can now create new blogs
+as well. Began working on delete blogs. Made template for
 blog_list
 ==============================================================
 
 EricaL -- 2022-11-14 01:23
 --------------------------------------------------------------
-Added back button to error.html and register.html. Having 
-issues with table & div in blog_list.html/blog_list.css. 
+Added back button to error.html and register.html. Having
+issues with table & div in blog_list.html/blog_list.css.
 ==============================================================
 
 EricaL -- 2022-11-14 02:04
 --------------------------------------------------------------
 Delete_entry & delete_blog won't work. Created delete-blog
-html template. Don't know whats up with the session stuff. 
+html template. Don't know whats up with the session stuff.
 ==============================================================
 
 EricaL -- 2022-11-14 10:10
 --------------------------------------------------------------
-edit_entry, delete_entry & delete_blog won't work for some 
+edit_entry, delete_entry & delete_blog won't work for some
 reason...
 ==============================================================
 
 EricaL -- 2022-11-14 12:29
 --------------------------------------------------------------
 edited blog_page.css and blog_page.html. Adjusted the password
-settings. 
+settings.
+==============================================================
+
+Henali -- 2022-11-14 14:07
+--------------------------------------------------------------
+Fixed a large bug and a couple small ones
 ==============================================================
