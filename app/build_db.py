@@ -9,6 +9,7 @@ c =  db.cursor()
 c.execute("CREATE TABLE users (name TEXT PRIMARY KEY, passwd TEXT);")
 c.execute("CREATE TABLE names (user_name TEXT PRIMARY KEY, name TEXT);")
 c.execute("CREATE TABLE blogs (name TEXT, user_name TEXT, id INTEGER PRIMARY KEY);")
+c.execute("CREATE TABLE entries (name TEXT, contents TEXT, blog_id INT, id INTEGER PRIMARY KEY)")
 
 db.commit()
 db.close()

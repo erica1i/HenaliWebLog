@@ -9,5 +9,6 @@ Enter the following in terminal:
 ```
 git clone git@github.com:erica1i/HenaliWebLog.git
 cd HenaliWebLog
+python3 app/build_db.py
 python3 app/__init__.py
 ```

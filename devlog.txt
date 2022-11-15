@@ -154,3 +154,9 @@ EricaL -- 2022-11-14 21:49
 --------------------------------------------------------------
 Added more css styling and re-uploaded design.pdf
 ==============================================================
+
+AahanM -- 2022-11-14 22:29
+--------------------------------------------------------------
+Blog ids are better now, no bug with old stuff. Formatting 
+the table creation, and updated instructions
+==============================================================

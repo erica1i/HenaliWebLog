@@ -28,8 +28,11 @@ def load_blog_list():
 def new_blog():
     db = sqlite3.connect(db_name)
     c = db.cursor()
-    new_blog_id = str( c.execute("SELECT max(id) FROM blogs").fetchall()[0][0] + 1)
-    print(new_blog_id)
+    try:
+        new_blog_id = str( c.execute("SELECT max(id) FROM blogs").fetchall()[0][0] + 1)
+    except:
+        new_blog_id = str(0)
+    # print(new_blog_id)
     blog_name = request.form.get('blog_name')
     creator = session['username']
     row = (blog_name, creator, new_blog_id)
