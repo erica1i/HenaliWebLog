@@ -10,6 +10,7 @@ time spent:
 
     <head>
       <title> DELETE {{blog_name}} </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='delete_blog_page.css')}}"
     </head>
 
     <body>
@@ -18,7 +19,8 @@ time spent:
         This action cannot be undone. 
         <form method = "POST" action="/delete_blog">
             <input type="submit" name="sub1" value="YES, I want to delete my blog">
-            <input type="button" value="No, I Don't." onclick= "history.back()">
+            <br><br>
+            <input type="button" value="Back" onclick= "history.back()">
            </form>    
       </h1>
     </body>

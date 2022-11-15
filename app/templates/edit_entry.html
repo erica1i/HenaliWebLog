@@ -10,6 +10,7 @@ time spent:
 
     <head>
       <title> {{blog_name}} - Edit Entry </title>
+      <link rel="stylesheet" type = text/css href = "{{ url_for('static', filename='edit_entry.css')}}"
     </head>
 
     <body>
@@ -18,14 +19,18 @@ time spent:
       </h1>
 
       <h3>
-        Edit post:
+        Editing Entry...
       </h3>
 
       <form method = "POST" action="/save_edit">
-        Post Name: <input type="text" name="name" value="{{name}}">
+        Post Name: 
         <br>
-        Contents: <input type="text" name="change" value="{{contents}}">
+        <input type="text" name="name" value="{{name}}">
         <br>
+        Contents: 
+        <br>
+        <input type="text" name="change" value="{{contents}}">
+        <br><br>
         <input type="submit" name="sub1" value="Save Edit">
       </form>
       <form method="POST" action="/delete_entry">

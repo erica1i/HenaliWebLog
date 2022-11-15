@@ -28,3 +28,12 @@ input[value="Create New Post"]{
     border-radius: 5px;
     font-weight: 300;
 }
+
+input[value="DELETE BLOG"]{
+    padding: 10px;
+    border: 0; 
+    color: aliceblue; 
+    background-color: rgb(21, 39, 126);
+    border-radius: 5px;
+    font-weight: 300;
+}
